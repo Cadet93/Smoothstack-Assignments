@@ -1,6 +1,5 @@
 import math
 import openpyxl as pyxl
-from openpyxl.styles import numbers
 import datetime
 from datetime import datetime as dt
 import logging
@@ -12,19 +11,22 @@ os.chdir('.\\Smoothstack-Assignments\\Weekend_work')
 filename = "expedia_report_monthly_january_2018.xlsx"
 log_filename = "logfile.log"
 
+#setup log file
 logging.basicConfig(format='%(asctime)s %(message)s',
                 datefmt='%m/%d/%Y %I:%M:%S %p',
                 filename=log_filename,
                 filemode='w',
                 level=logging.INFO)
 
-logging.info('miniproject Started...')
+logging.info('miniproject started...')
 
 def get_year_month(filename):
     try:
         #create variables for year and month of file
+        #strip year off filename
         year = filename[-9:-5]
 
+        #strip month off filename
         month = filename.split("_")[-2]
         
         #convert month into month number
@@ -186,7 +188,7 @@ def voc(wb, filename):
 #call function to strip year and month number from file provided
 year_month = get_year_month(filename)
 
-#exception handling for file errors
+#exception handling for file not in directory
 try:
     #open file to current sheet to log needed data from the summary tab
     wb = pyxl.open(filename)
