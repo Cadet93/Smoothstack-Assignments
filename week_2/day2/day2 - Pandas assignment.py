@@ -12,26 +12,17 @@ print(os.getcwd())
 
 file = "resources/Salaries.csv"
 
-
-
 original_df = pd.read_csv(file, low_memory=False)
 print(original_df.head())
 
-
-
 # get information about dataframe
 print(original_df.info())
-
 
 # average base pay first 10,000 rows
 original_df["BasePay"] = pd.to_numeric(original_df.loc[:,"BasePay"], downcast="float", errors='coerce')
 
 # filter to first 10000 rows of datafrome
 first_10000_df = original_df.head(10000)
-
-# shows datatypes of df
-print(first_10000_df.dtypes)
-
 bp_avg = first_10000_df["BasePay"].mean()
 print(f'Average base pay first 10,000 rows {bp_avg}')
 
